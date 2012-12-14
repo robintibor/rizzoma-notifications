@@ -1,0 +1,23 @@
+{
+  "name": "Rizzoma Notifications",
+  "version": "0.10",
+  "manifest_version": 2,
+  "description": "Rizzoma Notifications",
+  "browser_action": {
+    "default_icon": "rizzoma.png"
+  },
+  "background": {"page": "rizzoma-notifications-background.html"},
+  "content_scripts": [
+    {
+      "matches": ["http://rizzoma.com/*", "https://rizzoma.com/*"],
+      "js": ["lib/jquery-1.8.2.js",
+         "src/rizzoma-iframe/find-authentification-token.js"],
+      "all_frames" : true
+    }
+  ],
+  "permissions": [
+    "storage",
+    "http://rizzoma.com/*",
+    "https://rizzoma.com/*"
+  ]
+}
