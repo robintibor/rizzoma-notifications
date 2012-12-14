@@ -18,6 +18,7 @@
 
   addScriptThatWillSaveAuthIdInDiv = function() {
     var javascriptCode, script;
+    $('#expressSessionId').remove();
     javascriptCode = '(' + writeAuthTokenIntoDiv + ')();';
     script = document.createElement('script');
     script.textContent = javascriptCode;

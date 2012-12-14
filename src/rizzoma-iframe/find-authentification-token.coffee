@@ -11,7 +11,8 @@ writeAuthTokenIntoDiv = ->
     
 
 addScriptThatWillSaveAuthIdInDiv = ->
-    javascriptCode = '(' + writeAuthTokenIntoDiv + ')();'#"console.log('hihi', window.expressSession.id);"
+    $('#expressSessionId').remove()
+    javascriptCode = '(' + writeAuthTokenIntoDiv + ')();'
     script = document.createElement('script');
     script.textContent = javascriptCode;
     (document.head||document.documentElement).appendChild(script);

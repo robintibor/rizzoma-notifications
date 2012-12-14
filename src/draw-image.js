@@ -8,9 +8,9 @@ function updateNumberOfNotifications(num){
     var img = new Image();
     img.onload = function(){
       context.drawImage(this, 0, 0, 19, 19);
-      context.font = "10pt Arial";
+      context.font = "bold 10pt Arial";
       if (num != 0)
-        context.fillText(num, 2, 10);  // 10, 16 auch ok?
+        context.fillText(num, 3, 14);  // 10, 16 auch ok?
       var imageData = context.getImageData(0, 0, 19, 19);
       chrome.browserAction.setIcon({
         imageData: imageData

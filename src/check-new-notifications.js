@@ -32,9 +32,7 @@
   countUnreadTopicsAndDisplay = function(searchAnswer) {
     var numUnreadTopics;
     numUnreadTopics = countNumberOfUnreadTopics(searchAnswer);
-    showNumberOfUnreadTopics(numUnreadTopics);
-    console.log("search answer", searchAnswer);
-    return console.log("num unread topics", numUnreadTopics);
+    return showNumberOfUnreadTopics(numUnreadTopics);
   };
 
   countNumberOfUnreadTopics = function(searchAnswer) {
@@ -51,8 +49,7 @@
   };
 
   showNumberOfUnreadTopics = function(numUnreadTopics) {
-    updateNumberOfNotifications(numUnreadTopics);
-    return console.log("num unread topics", numUnreadTopics);
+    return updateNumberOfNotifications(numUnreadTopics);
   };
 
   handleExpressSessionId = function(expressSessionId) {
@@ -65,7 +62,5 @@
   });
 
   setInterval(checkForNewNotifications, 60000);
-
-  updateNumberOfNotifications(24);
 
 }).call(this);

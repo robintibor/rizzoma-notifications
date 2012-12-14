@@ -26,8 +26,6 @@ askForNewTopicsAndDisplay = ->
 countUnreadTopicsAndDisplay = (searchAnswer) ->
     numUnreadTopics = countNumberOfUnreadTopics(searchAnswer)
     showNumberOfUnreadTopics(numUnreadTopics)
-    console.log("search answer", searchAnswer)
-    console.log("num unread topics", numUnreadTopics)
 
 countNumberOfUnreadTopics = (searchAnswer) ->
     searchResults = searchAnswer.searchResults;
@@ -39,7 +37,6 @@ countNumberOfUnreadTopics = (searchAnswer) ->
 
 showNumberOfUnreadTopics = (numUnreadTopics) ->
     updateNumberOfNotifications(numUnreadTopics)
-    console.log("num unread topics", numUnreadTopics)
     
 handleExpressSessionId = (expressSessionId) ->
     _expressSessionId = expressSessionId
@@ -50,4 +47,3 @@ chrome.extension.onMessage.addListener((messageString, sender, sendResponse) ->
     checkForNewNotifications()
 )
 setInterval(checkForNewNotifications, 60000)
-updateNumberOfNotifications(24)
