@@ -5,7 +5,7 @@
   "description": "Rizzoma Notifications",
   "browser_action": {
     "default_icon": "rizzoma.png",
-    "default_popup": "../popup/popup.html"
+    "default_popup": "popup/popup.html"
   },
   "background": {"page": "rizzoma-notifications-background.html"},
   "content_scripts": [

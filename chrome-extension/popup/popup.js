@@ -5,6 +5,19 @@ var k=0;
 function start(){
     addNotification("S tochki zrenija banal'noj erudicii kazhdyj banal'no mysljashchij ...");
     addNotification("dva");
+    addNotification("dva");
+    addNotification("tri");
+    addNotification("dva");
+    addNotification("tri");
+    addNotification("dva");
+    addNotification("tri");
+    addNotification("dva");
+    addNotification("tri");    
+    addNotification("dva");
+    addNotification("tri");
+    addNotification("dva");
+    addNotification("tri");
+    
     addNotification("tri");
     
 }
