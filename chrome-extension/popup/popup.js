@@ -1,49 +1,49 @@
 // Copyright (c) 2012 The Chromium Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
-var k=0;
+
 function start(){
-    addNotification("S tochki zrenija banal'noj erudicii kazhdyj banal'no mysljashchij ...");
-    addNotification("dva");
-    addNotification("dva");
-    addNotification("tri");
-    addNotification("dva");
-    addNotification("tri");
-    addNotification("dva");
-    addNotification("tri");
-    addNotification("dva");
-    addNotification("tri");    
-    addNotification("dva");
-    addNotification("tri");
-    addNotification("dva");
-    addNotification("tri");
+    var call = function() {alert("here can be your callback")};
+    addNotification("S tochki zrenija banal'noj erudicii kazhdyj banal'no mysljashchij ...", call);
+    addNotification("dva", call);
+    addNotification("dva", call);
+    addNotification("tri", call);
+    addNotification("dva", call);
+    addNotification("tri", call);
+    addNotification("dva", call);
+    addNotification("tri", call);
+    addNotification("dva", call);
+    addNotification("tri", call);    
+    addNotification("dva", call);
+    addNotification("tri", call);
+    addNotification("dva", call);
+    addNotification("tri", call);
     
-    addNotification("tri");
+    addNotification("tri", call);
     
 }
 
-function markNotification(obj){
-    var nf = document.getElementById('notification'+obj);
-    nf.style.backgroundColor="white";
- //   alert(obj.id);
-}
-function remarkNotification(obj){
-    var nf = document.getElementById('notification'+obj);
-    nf.style.backgroundColor="rgb(227,234,240)";
-}
-function addNotification(text){
+
+function addNotification(text, callback){
     var nfs = document.getElementById('notifications');
-    console.log(nfs);
-    if (nfs.innerHTML == null) nfs.innerHTML = " ";
-    k++;
-    var str = '<div  class="notification" id="notification'+ k +'">' + text + '</div>';
-    nfs.innerHTML = nfs.innerHTML + str;
-    var nf = document.getElementById('notification'+k);
-    nf.addEventListener("onmouseover", markNotification(k));
-    nf.addEventListener("onmouseout", remarkNotification(k));
+    var k = $('.notification').size() + 1;
+    var str ='<div  class="notification" id="notification'+ k +'">' + text + '</div>';
+    $('#notifications').append(str);
+    console.log($('#ntoifications'));
+    var id = '#notification' + k;
+    
+    $(id).mouseover(function(){
+        $(id).css({backgroundColor: '#3184D6'});
+    });
+    
+    $(id).mouseout(function(){
+        $(id).css({backgroundColor: "rgb(227,234,240)"});
+    });
+    $(id).click(callback);
 }
 
 function main() {
+    
     start();
   // Initialization work goes here.
 }
