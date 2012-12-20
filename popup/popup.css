@@ -1,0 +1,32 @@
+body {
+    background-color: rgb(227,234,240);
+    min-width:220px; 
+    min-height:317px; 
+    overflow-x:hidden;
+    margin: 0px;
+}
+
+img {       
+    position:fixed;
+    bottom:0px;
+    width: 220px;
+    margin-left: 0px;
+    z-index: 1000;
+}
+
+#notifications {
+    height: 267px;
+    overflow-y :visible;
+    overflow-x :hidden;
+    top:0px;
+}
+.notification {
+    cursor: pointer;
+    min-height: 30px;
+    min-width: 210px;
+    border-bottom: 1px solid white;
+    font-style: normal;
+    padding: 5px;
+    font-weight: bold;
+    font-size: 13px;
+}
