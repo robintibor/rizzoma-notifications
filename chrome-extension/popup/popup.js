@@ -17,7 +17,8 @@ function askForUnreadMentions(callback) {
 function displayMentions(mentions) {
     for (var i = 0; i < mentions.length; i++) {
         var mention = mentions[i];
-        displayMention(mention);
+        if (!mention.isRead)
+            displayMention(mention);
     }
 }
 
