@@ -3,26 +3,30 @@
 // found in the LICENSE file.
 
 function start(){
-    var call = function() {alert("here can be your callback")};
-    addNotification("S tochki zrenija banal'noj erudicii kazhdyj banal'no mysljashchij ...", call);
-    addNotification("dva", call);
-    addNotification("dva", call);
-    addNotification("tri", call);
-    addNotification("dva", call);
-    addNotification("tri", call);
-    addNotification("dva", call);
-    addNotification("tri", call);
-    addNotification("dva", call);
-    addNotification("tri", call);    
-    addNotification("dva", call);
-    addNotification("tri", call);
-    addNotification("dva", call);
-    addNotification("tri", call);
-    
-    addNotification("tri", call);
-    
+    getUnreadMentionsAndDisplayThem();
 }
 
+function getUnreadMentionsAndDisplayThem() {
+    askForUnreadMentions(displayMentions);
+}
+
+function askForUnreadMentions(callback) {
+    chrome.extension.sendMessage("GET_NEWEST_MENTIONS", callback);
+}
+
+function displayMentions(mentions) {
+    for (var i = 0; i < mentions.length; i++) {
+        var mention = mentions[i];
+        displayMention(mention);
+    }
+}
+
+function displayMention(mention) {
+    addNotification(mention.title, function() {
+        var urlToMentionBlip = "https://www.rizzoma.com/topic/" + mention.waveId + "/" + mention.blipId;
+        window.open(urlToMentionBlip, "_blank");
+    })
+}
 
 function addNotification(text, callback){
     var nfs = document.getElementById('notifications');

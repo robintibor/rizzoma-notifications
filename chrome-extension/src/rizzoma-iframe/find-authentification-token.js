@@ -29,7 +29,7 @@
   sendAuthIdToExtension = function() {
     var expressSessionId;
     expressSessionId = $('#expressSessionId').text();
-    return chrome.extension.sendMessage(expressSessionId);
+    return chrome.extension.sendMessage("HAVE_EXPRESS_SESSION_ID: " + expressSessionId);
   };
 
   if (weAreInNotificationsIFrame()) {

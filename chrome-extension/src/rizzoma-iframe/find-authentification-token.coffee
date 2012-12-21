@@ -20,7 +20,7 @@ addScriptThatWillSaveAuthIdInDiv = ->
 
 sendAuthIdToExtension = ->
     expressSessionId = $('#expressSessionId').text()
-    chrome.extension.sendMessage(expressSessionId)
+    chrome.extension.sendMessage("HAVE_EXPRESS_SESSION_ID: #{expressSessionId}")
 
 if (weAreInNotificationsIFrame())
     addScriptThatWillSaveAuthIdInDiv()
