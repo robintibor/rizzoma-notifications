@@ -6,7 +6,18 @@ body {
     margin: 0px;
 }
 
-img {       
+.avatar {
+    float: right;
+    margin-right: 10px;
+    margin-bottom: 0px;
+    margin-top: 3px;
+    margin-left: 5px;
+}
+.snipets {
+    float: left;
+    width: 170px;
+}
+#logo {       
     position:fixed;
     bottom:0px;
     width: 220px;
@@ -23,7 +34,7 @@ img {
 .notification {
     cursor: pointer;
     min-height: 30px;
-    min-width: 210px;
+    width: 210px;
     border-bottom: 1px solid white;
     font-style: normal;
     padding: 5px;

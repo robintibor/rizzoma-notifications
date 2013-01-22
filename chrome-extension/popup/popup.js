@@ -23,20 +23,34 @@ function displayMentions(mentions) {
 }
 
 function displayMention(mention) {
-    addNotification(mention.title, function() {
+    console.dir(mention);
+    addNotification(mention, function() {
         var urlToMentionBlip = "https://www.rizzoma.com/topic/" + mention.waveId + "/" + mention.blipId;
         window.open(urlToMentionBlip, "_blank");
     })
 }
 
-function addNotification(text, callback){
+function addNotification(mention, callback){
+    var text = mention.title;
+    var avatarUrl = mention.senderAvatar;
+    var name = mention.senderName;
     var nfs = document.getElementById('notifications');
     var k = $('.notification').size() + 1;
-    var str ='<div  class="notification" id="notification'+ k +'">' + text + '</div>';
+    if (text.length > 45){
+        text = text.substring(0, 40) + " ... ";
+    }
+    var id  = 'notification'+ k;
+    var str ='<div  class="notification" id="'+ id +'"><span class="snipets" >' 
+            + text 
+            + '</span></div>';
     $('#notifications').append(str);
-    console.log($('#ntoifications'));
-    var id = '#notification' + k;
-    
+    var imgStr = '<img class="avatar" title ="' 
+            + name
+            +'" src="' + avatarUrl
+            +'"height="24" width="24">';
+    console.log($('#notifications'));
+    id = '#' + id;
+    $(id).append(imgStr);
     $(id).mouseover(function(){
         $(id).css({backgroundColor: '#3184D6'});
     });
