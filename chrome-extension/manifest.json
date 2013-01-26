@@ -4,7 +4,7 @@
   "manifest_version": 2,
   "description": "Rizzoma Notifications",
   "browser_action": {
-    "default_icon": "rizzoma-transparent.png",
+    "default_icon": "img/rizzoma-transparent-icon.png",
     "default_popup": "popup/popup.html"
   },
   "background": {"page": "rizzoma-notifications-background.html"},

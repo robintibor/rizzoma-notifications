@@ -1,3 +1,4 @@
+# just a listener sending the newest mentions if the popup requests them
 window.rizzomaNotifications = window.rizzomaNotifications || {}
 
 getNewestMentionsAndSendback = (sendResponse) ->

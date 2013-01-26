@@ -40,7 +40,7 @@ function minimizePopup(){
             imageData: imageData
         });
     };
-    img.src = "../rizzoma-transparent.png";
+    img.src = "../img/rizzoma-transparent-icon.png";
 }
 function loggedInButWithoutNewMentions(){
     var canvas = document.getElementById('canvas');
@@ -54,7 +54,7 @@ function loggedInButWithoutNewMentions(){
             imageData: imageData
         });
     };
-    img.src = "../rizzoma.png";
+    img.src = "rizzoma.png";
     return;
 }
 function displayMentions(mentions) {

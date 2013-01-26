@@ -13,13 +13,13 @@ function updateNumberOfNotifications(num){
       context.fillStyle = "white";
       if (num != 0)
         if (num < 10)
-          context.fillText(num, 10, 17);  // 10, 16 auch ok?
+          context.fillText(num, 10, 17);
         else
-          context.fillText(num, 7, 17);  // 10, 16 auch ok?
+          context.fillText(num, 7, 17);
       var imageData = context.getImageData(0, 0, 19, 19);
       chrome.browserAction.setIcon({
         imageData: imageData
       });
     };
-    img.src = "../icon21x21.png";
+    img.src = "../../img/unread-mentions-icon.png";
 }
