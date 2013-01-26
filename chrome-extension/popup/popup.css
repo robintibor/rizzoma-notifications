@@ -80,3 +80,12 @@ body {
     font-size: 13px;
     font-family: arial, sans-serif;
 }
+#ynm {
+    position:fixed;
+    top: 17px;
+    left: 18px;
+    font-style: normal;
+    font-size: 20px;
+    color: #5F5F5F;
+    z-index: 1001;
+}

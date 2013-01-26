@@ -20,25 +20,64 @@ function askForUnreadMentions(callback) {
 function minimizePopup(){
     $('#notifications').css({height: '10px'});
     $('body').css({height: '10px'});
-    $('body').css({styleFloat: 'right'});
-    $('#notifications').css({width: '290px'});
-    $('body').css({width: '290px'});
+    $('body').css({
+        styleFloat: 'right'
+    });
+    $('#notifications').css({
+        width: '290px'
+    });
+    $('body').css({
+        width: '290px'
+    });
+    var canvas = document.getElementById('canvas');
+    var context = canvas.getContext('2d');
+    // ...draw to the canvas...
+    var img = new Image();
+    img.onload = function(){
+        context.drawImage(this, 0, 0, 19, 19);
+        var imageData = context.getImageData(0, 0, 19, 19);
+        chrome.browserAction.setIcon({
+            imageData: imageData
+        });
+    };
+    img.src = "../rizzoma-transparent.png";
+}
+function loggedInButWithoutNewMentions(){
+    var canvas = document.getElementById('canvas');
+    var context = canvas.getContext('2d');
+    // ...draw to the canvas...
+    var img = new Image();
+    img.onload = function(){
+        context.drawImage(this, 0, 0, 19, 19);
+        var imageData = context.getImageData(0, 0, 19, 19);
+        chrome.browserAction.setIcon({
+            imageData: imageData
+        });
+    };
+    img.src = "../rizzoma.png";
+    return;
 }
 function displayMentions(mentions) {
     var readedMentions = new Array();
-    var anreadedMentions = new Array();
-    if (mentions.length == 0)
-        minimizePopup();
+    var unreadedMentions = new Array();
     for (var i = 0; i < mentions.length; i++) {
         var mention = mentions[i];
         if (!mention.isRead)
-          anreadedMentions.push(mention);
+          unreadedMentions.push(mention);
         else
           readedMentions.push(mention);
     }
-    for (i = 0; i < anreadedMentions.length; i++)
-        displayMention(anreadedMentions[i]);
-    var n = Math.min(30 - anreadedMentions.length, readedMentions.length);
+    if (mentions.length == 0)
+        minimizePopup();
+    else if (unreadedMentions.length == 0)
+    {
+        loggedInButWithoutNewMentions();
+    } else if (unreadedMentions.length > 0) {
+        $('#ynm').css({visibility: 'visible'});
+    }
+    for (i = 0; i < unreadedMentions.length; i++)
+        displayMention(unreadedMentions[i]);
+    var n = Math.min(30 - unreadedMentions.length, readedMentions.length);
     for (i = 0; i < n; i++)
         displayMention(readedMentions[i]);
 }
