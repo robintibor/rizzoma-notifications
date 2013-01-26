@@ -1,10 +1,10 @@
 {
   "name": "Rizzoma Notifications",
-  "version": "0.10",
+  "version": "0.20",
   "manifest_version": 2,
   "description": "Rizzoma Notifications",
   "browser_action": {
-    "default_icon": "rizzoma.png",
+    "default_icon": "rizzoma-transparent.png",
     "default_popup": "popup/popup.html"
   },
   "background": {"page": "rizzoma-notifications-background.html"},

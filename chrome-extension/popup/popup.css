@@ -1,43 +1,78 @@
 body {
-    background-color: rgb(227,234,240);
-    min-width:220px; 
-    min-height:317px; 
+    background-color: rgb(228,237,244);
+    width:599px; 
+    height:427px; 
     overflow-x:hidden;
     margin: 0px;
 }
 
 .avatar {
     float: right;
-    margin-right: 10px;
+    margin-right: 19px;
     margin-bottom: 0px;
     margin-top: 3px;
     margin-left: 5px;
+    border: 1px solid rgb(228,237,244);
+}
+
+.date {
+    float: right;
+    text-align: center;
+    bottom: 0px;
+    font-size: 10px;
+    margin-right: 24px;
+    margin-bottom: 0px;
+    margin-top: 3px;
+    font-family: 'PT Sans Narrow', sans-serif;
+    font-weight: normal;
+    width: 33px;
 }
 .snipets {
     float: left;
-    width: 170px;
+    width: 520px;
+    height: 40px;
+    margin: 5px;
 }
 #logo {       
     position:fixed;
-    bottom:0px;
-    width: 220px;
+    right:0px;
+    top:0px;
+    width: 599px;
     margin-left: 0px;
     z-index: 1000;
 }
 
+#rizzomaLink {    
+    cursor: pointer;
+    position: fixed;
+    top: 18px;
+    right: 90px;
+    width: 115px;
+    height: 25px;
+    margin-left: 0px;
+    z-index: 10001;
+    filter: alpha(opacity=0);
+    -moz-opacity: 0;
+    opacity: 0;
+    background-color: red;
+}
 #notifications {
-    height: 267px;
+    position: relative;
+    height: 427px;
+    overflow: scroll;
     overflow-y :visible;
     overflow-x :hidden;
-    top:0px;
+    margin-top:58px; 
 }
 .notification {
     cursor: pointer;
-    min-height: 30px;
-    width: 210px;
-    border-bottom: 1px solid white;
+    height: 60px;
+    width: 599px;
+    background-color: #FFFFFF;
+    border-bottom: 1px solid rgb(228,237,244);
+    border-left: 1px solid rgb(228,237,244);
+    border-right: 1px solid rgb(228,237,244);
     font-style: normal;
-    padding: 5px;
     font-weight: bold;
     font-size: 13px;
     font-family: arial, sans-serif;
