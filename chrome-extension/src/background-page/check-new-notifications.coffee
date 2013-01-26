@@ -5,7 +5,7 @@ _expressSessionId = null
 checkForNewNotifications = ->
     if (userIsLoggedIn())
         askForNewMentionsAndDisplay()
-        console.log("check for new notifications")
+        console.log("check for new notifications at #{new Date(Date.now())}")
 
 userIsLoggedIn = ->
     return _expressSessionId != null

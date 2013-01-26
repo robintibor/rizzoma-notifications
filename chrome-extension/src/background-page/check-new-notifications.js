@@ -8,7 +8,7 @@
   checkForNewNotifications = function() {
     if (userIsLoggedIn()) {
       askForNewMentionsAndDisplay();
-      return console.log("check for new notifications");
+      return console.log("check for new notifications at " + (new Date(Date.now())));
     }
   };
 
