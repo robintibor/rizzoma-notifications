@@ -4,7 +4,7 @@
 
 function start(){
     $("#rizzomaLink").click(function() {
-        var urlToMentionBlip = "https://www.rizzoma.com/topic/";
+        var urlToMentionBlip = "https://rizzoma.com/topic/ce405f9c7a19e357d8a497235ac81ec0/0_b_44dc_2vauj/";
         window.open(urlToMentionBlip, "_blank");
     });
     getUnreadMentionsAndDisplayThem();
