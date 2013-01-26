@@ -1,6 +1,6 @@
 {
   "name": "Rizzoma Notifications",
-  "version": "0.21",
+  "version": "0.22",
   "manifest_version": 2,
   "description": "Rizzoma Notifications",
   "browser_action": {
