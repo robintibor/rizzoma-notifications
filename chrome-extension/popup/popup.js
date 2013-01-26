@@ -82,8 +82,8 @@ function addNotification(mention, callback){
     var readStatus = mention.isRead;
     var nfs = document.getElementById('notifications');
     var k = $('.notification').size() + 1;
-    if (text.length > 200){
-        text = text.substring(0, 200) + " ... ";
+    if (text.length > 160){
+        text = text.substring(0, 160) + " ... ";
     }
     var id  = 'notification'+ k;
     var str ='<div  class="notification" id="'+ id +'"><span class="snipets" >' 
