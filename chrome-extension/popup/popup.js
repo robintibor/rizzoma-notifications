@@ -18,11 +18,11 @@ function askForUnreadMentions(callback) {
     chrome.extension.sendMessage("GET_NEWEST_MENTIONS", callback);
 }
 function minimizePopup(){
-    $('#notifications').css({height: '10px'});
-    $('body').css({height: '10px'});
-    $('body').css({
-        styleFloat: 'right'
-    });
+   // $('#notifications').css({height: '10px'});
+   // $('body').css({height: '10px'});
+   // $('body').css({
+   //     styleFloat: 'right'
+   // });
     $('#notifications').css({
         width: '290px'
     });
@@ -55,6 +55,8 @@ function loggedInButWithoutNewMentions(){
         });
     };
     img.src = "rizzoma.png";
+    $('#notifications').css({width: '599px'});
+    $('body').css({width: '599px'});
     return;
 }
 function displayMentions(mentions) {
@@ -74,12 +76,21 @@ function displayMentions(mentions) {
         loggedInButWithoutNewMentions();
     } else if (unreadedMentions.length > 0) {
         $('#ynm').css({visibility: 'visible'});
+        $('#notifications').css({width: '599px'});
+        $('body').css({width: '599px'});
     }
     for (i = 0; i < unreadedMentions.length; i++)
         displayMention(unreadedMentions[i]);
     var n = Math.min(30 - unreadedMentions.length, readedMentions.length);
     for (i = 0; i < n; i++)
         displayMention(readedMentions[i]);
+    // repair design of mentions in case 
+    // of to few mentions (scrollbar is unvisible)
+    if (readedMentions.length + unreadedMentions.length < 8) {
+        $('.date').css({marginRight: '9px'});
+        $('.avatar').css({marginRight: '4px'});
+        
+    }
 }
 
 function displayMention(mention) {
@@ -107,9 +118,9 @@ function getTimeString(time)
 }
 function addNotification(mention, callback){
     var text = mention.title;
-    var b=new Date(Date.now());
+    var b = new Date(Date.now());
     var lSent = parseInt(mention.lastSent)*1000 + b.getTimezoneOffset();
-    var date=new Date(lSent);
+    var date = new Date(lSent);
     //var date = new Date(1000 * parseInt(mention.lastSent));
     var timeStr = getTimeString(date);
     var backGroundColor;
@@ -151,11 +162,13 @@ function addNotification(mention, callback){
     }
     $(id).append(timeDivStr);
     $(id).mouseover(function(){
-        $(id).css({backgroundColor: '#3184D6'});
+        $(id).css({backgroundColor: '#6badf3'});
+        $(id).css({color: 'white'});
     });
     
     $(id).mouseout(function(){
         $(id).css({backgroundColor: backGroundColor});
+        $(id).css({color: 'black'});
     });
     $(id).click(callback);
 }

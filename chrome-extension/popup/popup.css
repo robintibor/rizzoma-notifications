@@ -1,7 +1,8 @@
 body {
     background-color: rgb(228,237,244);
-    width:599px; 
-    height:427px; 
+    styleFloat: right;
+    width:290px; 
+    min-height: 50px; 
     overflow-x:hidden;
     margin: 0px;
 }
@@ -20,6 +21,7 @@ body {
     text-align: center;
     bottom: 0px;
     font-size: 10px;
+    color: black;
     margin-right: 25px;
     margin-bottom: 0px;
     margin-top: 1px;
@@ -61,7 +63,9 @@ body {
 }
 #notifications {
     position: relative;
-    height: 427px;
+    width:290px; 
+    max-height: 427px;
+    min-height: 10px;
     overflow: scroll;
     overflow-y :visible;
     overflow-x :hidden;
