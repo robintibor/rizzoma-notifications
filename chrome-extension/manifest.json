@@ -1,6 +1,6 @@
 {
   "name": "Rizzoma Notifications",
-  "version": "0.24",
+  "version": "0.25",
   "manifest_version": 2,
   "description": "Know directly when somebody needs your attention",
   "browser_action": {
