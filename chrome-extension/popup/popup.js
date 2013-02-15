@@ -24,12 +24,6 @@ function minimizePopup(){
    // $('body').css({
    //     styleFloat: 'right'
    // });
-    $('#notifications').css({
-        width: '290px'
-    });
-    $('body').css({
-        width: '290px'
-    });
     var canvas = document.getElementById('canvas');
     var context = canvas.getContext('2d');
     // ...draw to the canvas...
@@ -134,8 +128,8 @@ function addNotification(mention, callback){
     var readStatus = mention.isRead;
     var nfs = document.getElementById('notifications');
     var k = $('.notification').size() + 1;
-    if (text.length > 160){
-        text = text.substring(0, 160) + " ... ";
+    if (text.length > 130){
+        text = text.substring(0, 130) + " ... ";
     }
     var id  = 'notification'+ k;
     var str ='<div  class="notification" id="'+ id +'"><span class="snipets" >' 

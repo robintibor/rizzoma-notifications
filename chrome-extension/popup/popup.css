@@ -1,8 +1,8 @@
 body {
     background-color: rgb(228,237,244);
     styleFloat: right;
-    width:290px; 
-    min-height: 50px; 
+    width:180px; 
+    min-height: 0px; 
     overflow-x:hidden;
     margin: 0px;
 }
@@ -51,8 +51,8 @@ body {
     cursor: pointer;
     position: fixed;
     top: 18px;
-    right: 90px;
-    width: 115px;
+    right: 10px;
+    width: 155px;
     height: 25px;
     margin-left: 0px;
     z-index: 10001;
@@ -63,9 +63,9 @@ body {
 }
 #notifications {
     position: relative;
-    width:290px; 
+    width:180px; 
     max-height: 427px;
-    min-height: 10px;
+    min-height: 0px;
     overflow: scroll;
     overflow-y :visible;
     overflow-x :hidden;
@@ -81,16 +81,16 @@ body {
     border-right: 1px solid rgb(228,237,244);
     font-style: normal;
     font-weight: bold;
-    font-size: 13px;
+    font-size: 15px;
     font-family: arial, sans-serif;
 }
 #ynm {
     position:fixed;
-    top: 17px;
+    top: 15px;
     left: 18px;
     font-style: normal;
-    font-size: 20px;
-    color: #5F5F5F;
+    font-size: 22px;
+    color: rgb(101, 98, 97);
     z-index: 1001;
     font-family: arial, sans-serif;
 }
