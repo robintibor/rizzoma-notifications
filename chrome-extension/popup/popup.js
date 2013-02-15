@@ -4,7 +4,8 @@
 
 function start(){
     $("#rizzomaLink").click(function() {
-        var urlToMentionBlip = "https://rizzoma.com/topic/ce405f9c7a19e357d8a497235ac81ec0/0_b_44dc_2vauj/";
+        // /?from=mention_extension for google analytics :)
+        var urlToMentionBlip = "https://rizzoma.com/topic/ce405f9c7a19e357d8a497235ac81ec0/0_b_44dc_2vauj/?from=mention_extension";
         window.open(urlToMentionBlip, "_blank");
     });
     getUnreadMentionsAndDisplayThem();
@@ -96,7 +97,8 @@ function displayMentions(mentions) {
 function displayMention(mention) {
     console.dir(mention);
     addNotification(mention, function() {
-        var urlToMentionBlip = "https://www.rizzoma.com/topic/" + mention.waveId + "/" + mention.blipId;
+        // /?from=mention_extension for google analytics :)
+        var urlToMentionBlip = "https://www.rizzoma.com/topic/" + mention.waveId + "/" + mention.blipId + "/?from=mention_extension" ;
         window.open(urlToMentionBlip, "_blank");
     })
 }
