@@ -1,5 +1,5 @@
 (function() {
-  var askForNewMentionsAndDisplay, checkForNewNotifications, countNumberOfUnreadMentions, countUnreadMentionsAndDisplay, handleExpressSessionId, showNumberOfUnreadMentions, userIsLoggedIn, _expressSessionId;
+  var askForNewMentionsAndDisplay, checkForNewNotifications, countNumberOfUnreadMentions, countUnreadMentionsAndDisplay, handleExpressSessionId, removeRizzomaIFrame, showNumberOfUnreadMentions, userIsLoggedIn, _expressSessionId;
 
   window.rizzomaNotifications = window.rizzomaNotifications || {};
 
@@ -65,10 +65,15 @@
   chrome.extension.onMessage.addListener(function(messageString, sender, sendResponse) {
     if (messageString.slice(0, "HAVE_EXPRESS_SESSION_ID: ".length) === "HAVE_EXPRESS_SESSION_ID: ") {
       handleExpressSessionId(messageString);
+      removeRizzomaIFrame();
       checkForNewNotifications();
     }
     return true;
   });
+
+  removeRizzomaIFrame = function() {
+    return $('#rizzomaNotificationsIFrame').remove();
+  };
 
   setInterval(checkForNewNotifications, 60000);
 

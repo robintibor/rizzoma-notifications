@@ -52,9 +52,13 @@ handleExpressSessionId = (expressSessionIdMessage) ->
 
 chrome.extension.onMessage.addListener((messageString, sender, sendResponse) ->
     if (messageString[0..."HAVE_EXPRESS_SESSION_ID: ".length] == "HAVE_EXPRESS_SESSION_ID: ")
-        handleExpressSessionId(messageString)       
+        handleExpressSessionId(messageString)
+        removeRizzomaIFrame()
         checkForNewNotifications()
     return true # has to be done for other messages to be handlable by other listeners
 )
+
+removeRizzomaIFrame = ->
+    $('#rizzomaNotificationsIFrame').remove()
 
 setInterval(checkForNewNotifications, 60000)
