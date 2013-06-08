@@ -40,6 +40,7 @@ handleUnreadMentions = (searchAnswer) ->
         insertRizzomaIFrame() # inserting rizzoma iframe should get you new auth id
     else
         console.log ("searching didn't work mit #{_expressSessionId}, time not long enough to reinsert iframe")
+        showNotLoggedInSymbol()
         
 
 countUnreadMentionsAndDisplay = (searchAnswer) ->
@@ -65,6 +66,11 @@ timeSinceGettingAuthIdLongEnough = ->
 
 insertRizzomaIFrame = ->
     $('body').append('<iframe src="https://rizzoma.com/topic/" id="rizzomaNotificationsIFrame"></iframe>')
+
+showNotLoggedInSymbol = ->
+    chrome.browserAction.setIcon({
+      path: '../../img/rizzoma-transparent-icon.png'
+    })
 
 handleExpressSessionId = (expressSessionIdMessage) ->
     _expressSessionId = expressSessionIdMessage["HAVE_EXPRESS_SESSION_ID: ".length..]
