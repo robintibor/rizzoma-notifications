@@ -1,9 +1,11 @@
 (function() {
-  var askForNewMentionsAndDisplay, checkForNewNotifications, countNumberOfUnreadMentions, countUnreadMentionsAndDisplay, handleExpressSessionId, removeRizzomaIFrame, showNumberOfUnreadMentions, userIsLoggedIn, _expressSessionId;
+  var askForNewMentionsAndDisplay, checkForNewNotifications, countNumberOfUnreadMentions, countUnreadMentionsAndDisplay, handleExpressSessionId, handleUnreadMentions, reinsertRizzomaIFrameForGettingAuthId, removeRizzomaIFrame, showNumberOfUnreadMentions, timeSinceGettingAuthIdLongEnough, userIsLoggedIn, _expressSessionId, _lastTimeOfGettingAuthId;
 
   window.rizzomaNotifications = window.rizzomaNotifications || {};
 
   _expressSessionId = null;
+
+  _lastTimeOfGettingAuthId = null;
 
   checkForNewNotifications = function() {
     if (userIsLoggedIn()) {
@@ -18,7 +20,7 @@
 
   askForNewMentionsAndDisplay = function() {
     return window.rizzomaNotifications.askForNewMentions(function(data) {
-      return countUnreadMentionsAndDisplay(data.data);
+      return handleUnreadMentions(data.data);
     });
   };
 
@@ -33,6 +35,19 @@
       dataType: 'json',
       success: callback
     });
+  };
+
+  handleUnreadMentions = function(searchAnswer) {
+    var searchingWorked;
+    searchingWorked = searchAnswer.lastSearchDate != null;
+    if (searchingWorked) {
+      return countUnreadMentionsAndDisplay(searchAnswer);
+    } else if (timeSinceGettingAuthIdLongEnough()) {
+      console.log("searching didn't work mit " + _expressSessionId + ", reinserting iframe");
+      return reinsertRizzomaIFrameForGettingAuthId();
+    } else {
+      return console.log("searching didn't work mit " + _expressSessionId + ", time not long enough to reinsert iframe");
+    }
   };
 
   countUnreadMentionsAndDisplay = function(searchAnswer) {
@@ -58,15 +73,27 @@
     return updateNumberOfNotifications(numUnreadMentions);
   };
 
+  timeSinceGettingAuthIdLongEnough = function() {
+    var minutesSinceGettingAuthId, minutesToWait;
+    minutesToWait = 20;
+    minutesSinceGettingAuthId = (Date.now() - _lastTimeOfGettingAuthId) / (1000 * 60);
+    return minutesSinceGettingAuthId > minutesToWait;
+  };
+
+  reinsertRizzomaIFrameForGettingAuthId = function() {
+    return $('body').append('<iframe src="https://rizzoma.com/topic/" id="rizzomaNotificationsIFrame"></iframe>');
+  };
+
   handleExpressSessionId = function(expressSessionIdMessage) {
-    return _expressSessionId = expressSessionIdMessage.slice("HAVE_EXPRESS_SESSION_ID: ".length);
+    _expressSessionId = expressSessionIdMessage.slice("HAVE_EXPRESS_SESSION_ID: ".length);
+    _lastTimeOfGettingAuthId = Date.now();
+    removeRizzomaIFrame();
+    return checkForNewNotifications();
   };
 
   chrome.extension.onMessage.addListener(function(messageString, sender, sendResponse) {
     if (messageString.slice(0, "HAVE_EXPRESS_SESSION_ID: ".length) === "HAVE_EXPRESS_SESSION_ID: ") {
       handleExpressSessionId(messageString);
-      removeRizzomaIFrame();
-      checkForNewNotifications();
     }
     return true;
   });
