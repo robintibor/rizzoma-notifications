@@ -1,10 +1,11 @@
 {
   "name": "Rizzoma @Mentions Notifier",
-  "version": "0.254",
+  "version": "0.255",
   "manifest_version": 2,
   "description": "Check out and respond to @mentions in Rizzoma immediately. Know if somebody needs your attention right away.",
   "icons": {
-      "48": "img/rizzoma-48x48.png"
+      "48": "img/rizzoma-48x48.png",
+      "128": "img/rizzoma-128x128.png"
   },
   "browser_action": {
     "default_icon": "img/rizzoma-transparent-icon.png",
