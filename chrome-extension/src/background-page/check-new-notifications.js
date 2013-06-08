@@ -1,5 +1,5 @@
 (function() {
-  var askForNewMentionsAndDisplay, checkForNewNotifications, countNumberOfUnreadMentions, countUnreadMentionsAndDisplay, handleExpressSessionId, handleUnreadMentions, reinsertRizzomaIFrameForGettingAuthId, removeRizzomaIFrame, showNumberOfUnreadMentions, timeSinceGettingAuthIdLongEnough, userIsLoggedIn, _expressSessionId, _lastTimeOfGettingAuthId;
+  var askForNewMentionsAndDisplay, checkForNewNotifications, countNumberOfUnreadMentions, countUnreadMentionsAndDisplay, handleExpressSessionId, handleUnreadMentions, insertRizzomaIFrame, listenForExpressId, removeRizzomaIFrame, showNumberOfUnreadMentions, timeSinceGettingAuthIdLongEnough, userIsLoggedIn, _expressSessionId, _lastTimeOfGettingAuthId;
 
   window.rizzomaNotifications = window.rizzomaNotifications || {};
 
@@ -44,7 +44,7 @@
       return countUnreadMentionsAndDisplay(searchAnswer);
     } else if (timeSinceGettingAuthIdLongEnough()) {
       console.log("searching didn't work mit " + _expressSessionId + ", reinserting iframe");
-      return reinsertRizzomaIFrameForGettingAuthId();
+      return insertRizzomaIFrame();
     } else {
       return console.log("searching didn't work mit " + _expressSessionId + ", time not long enough to reinsert iframe");
     }
@@ -80,7 +80,7 @@
     return minutesSinceGettingAuthId > minutesToWait;
   };
 
-  reinsertRizzomaIFrameForGettingAuthId = function() {
+  insertRizzomaIFrame = function() {
     return $('body').append('<iframe src="https://rizzoma.com/topic/" id="rizzomaNotificationsIFrame"></iframe>');
   };
 
@@ -91,16 +91,20 @@
     return checkForNewNotifications();
   };
 
-  chrome.extension.onMessage.addListener(function(messageString, sender, sendResponse) {
+  removeRizzomaIFrame = function() {
+    return $('#rizzomaNotificationsIFrame').remove();
+  };
+
+  listenForExpressId = function(messageString, sender, sendResponse) {
     if (messageString.slice(0, "HAVE_EXPRESS_SESSION_ID: ".length) === "HAVE_EXPRESS_SESSION_ID: ") {
       handleExpressSessionId(messageString);
     }
     return true;
-  });
-
-  removeRizzomaIFrame = function() {
-    return $('#rizzomaNotificationsIFrame').remove();
   };
+
+  chrome.extension.onMessage.addListener(listenForExpressId);
+
+  insertRizzomaIFrame();
 
   setInterval(checkForNewNotifications, 60000);
 

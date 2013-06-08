@@ -37,7 +37,7 @@ handleUnreadMentions = (searchAnswer) ->
         countUnreadMentionsAndDisplay(searchAnswer)
     else if (timeSinceGettingAuthIdLongEnough())
         console.log ("searching didn't work mit #{_expressSessionId}, reinserting iframe")
-        reinsertRizzomaIFrameForGettingAuthId()
+        insertRizzomaIFrame() # inserting rizzoma iframe should get you new auth id
     else
         console.log ("searching didn't work mit #{_expressSessionId}, time not long enough to reinsert iframe")
         
@@ -63,7 +63,7 @@ timeSinceGettingAuthIdLongEnough = ->
     minutesSinceGettingAuthId = (Date.now() - _lastTimeOfGettingAuthId) / (1000 * 60) # convert from ms to minutes
     return minutesSinceGettingAuthId > minutesToWait 
 
-reinsertRizzomaIFrameForGettingAuthId = ->
+insertRizzomaIFrame = ->
     $('body').append('<iframe src="https://rizzoma.com/topic/" id="rizzomaNotificationsIFrame"></iframe>')
 
 handleExpressSessionId = (expressSessionIdMessage) ->
@@ -72,14 +72,14 @@ handleExpressSessionId = (expressSessionIdMessage) ->
     removeRizzomaIFrame()
     checkForNewNotifications()
 
-
-chrome.extension.onMessage.addListener((messageString, sender, sendResponse) ->
-    if (messageString[0..."HAVE_EXPRESS_SESSION_ID: ".length] == "HAVE_EXPRESS_SESSION_ID: ")
-        handleExpressSessionId(messageString)
-    return true # has to be done for other messages to be handlable by other listeners
-)
-
 removeRizzomaIFrame = ->
     $('#rizzomaNotificationsIFrame').remove()
 
+listenForExpressId = (messageString, sender, sendResponse) ->
+    if (messageString[0..."HAVE_EXPRESS_SESSION_ID: ".length] == "HAVE_EXPRESS_SESSION_ID: ")
+        handleExpressSessionId(messageString)
+    return true # has to be done for other messages to be handlable by other listeners
+
+chrome.extension.onMessage.addListener(listenForExpressId)
+insertRizzomaIFrame()
 setInterval(checkForNewNotifications, 60000)
