@@ -4,11 +4,13 @@ _expressSessionId = null
 _lastTimeOfGettingAuthId = null
 
 checkForNewNotifications = ->
-    if (userIsLoggedIn())
+    if (expressSessionIdRetrievedFromRizzoma())
         askForNewMentionsAndDisplay()
         console.log("check for new notifications at #{new Date(Date.now())}")
+    else 
+      reinsertRizzomaIFrame()
 
-userIsLoggedIn = ->
+expressSessionIdRetrievedFromRizzoma = ->
     return _expressSessionId != null
 
 askForNewMentionsAndDisplay = ->
@@ -66,6 +68,10 @@ timeSinceGettingAuthIdLongEnough = ->
 
 insertRizzomaIFrame = ->
     $('body').append('<iframe src="https://rizzoma.com/topic/" id="rizzomaNotificationsIFrame"></iframe>')
+
+reinsertRizzomaIFrame = ->
+  removeRizzomaIFrame()
+  insertRizzomaIFrame()
 
 showNotLoggedInSymbol = ->
     chrome.browserAction.setIcon({

@@ -1,5 +1,5 @@
 (function() {
-  var askForNewMentionsAndDisplay, checkForNewNotifications, countNumberOfUnreadMentions, countUnreadMentionsAndDisplay, handleExpressSessionId, handleUnreadMentions, insertRizzomaIFrame, listenForExpressId, removeRizzomaIFrame, showNotLoggedInSymbol, showNumberOfUnreadMentions, timeSinceGettingAuthIdLongEnough, userIsLoggedIn, _expressSessionId, _lastTimeOfGettingAuthId;
+  var askForNewMentionsAndDisplay, checkForNewNotifications, countNumberOfUnreadMentions, countUnreadMentionsAndDisplay, expressSessionIdRetrievedFromRizzoma, handleExpressSessionId, handleUnreadMentions, insertRizzomaIFrame, listenForExpressId, reinsertRizzomaIFrame, removeRizzomaIFrame, showNotLoggedInSymbol, showNumberOfUnreadMentions, timeSinceGettingAuthIdLongEnough, _expressSessionId, _lastTimeOfGettingAuthId;
 
   window.rizzomaNotifications = window.rizzomaNotifications || {};
 
@@ -8,13 +8,15 @@
   _lastTimeOfGettingAuthId = null;
 
   checkForNewNotifications = function() {
-    if (userIsLoggedIn()) {
+    if (expressSessionIdRetrievedFromRizzoma()) {
       askForNewMentionsAndDisplay();
       return console.log("check for new notifications at " + (new Date(Date.now())));
+    } else {
+      return reinsertRizzomaIFrame();
     }
   };
 
-  userIsLoggedIn = function() {
+  expressSessionIdRetrievedFromRizzoma = function() {
     return _expressSessionId !== null;
   };
 
@@ -83,6 +85,11 @@
 
   insertRizzomaIFrame = function() {
     return $('body').append('<iframe src="https://rizzoma.com/topic/" id="rizzomaNotificationsIFrame"></iframe>');
+  };
+
+  reinsertRizzomaIFrame = function() {
+    removeRizzomaIFrame();
+    return insertRizzomaIFrame();
   };
 
   showNotLoggedInSymbol = function() {
