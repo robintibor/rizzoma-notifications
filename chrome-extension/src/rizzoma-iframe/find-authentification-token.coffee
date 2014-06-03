@@ -7,7 +7,7 @@ writeAuthTokenIntoDiv = ->
         expressSessionId = window.expressSession.id
     else
         expressSessionId = "undefined"
-    $('body').append("<div id='expressSessionId'>#{expressSessionId}</div>") 
+    $('body').append("<div id='expressSessionId' style='display: none'>#{expressSessionId}</div>") 
     
 
 addScriptThatWillSaveAuthIdInDiv = ->
@@ -22,6 +22,10 @@ sendAuthIdToExtension = ->
     expressSessionId = $('#expressSessionId').text()
     chrome.extension.sendMessage("HAVE_EXPRESS_SESSION_ID: #{expressSessionId}")
 
+removeAuthIdDiv = ->
+    $('#expressSessionId').remove()
+    
 if (weAreInNotificationsIFrame())
     addScriptThatWillSaveAuthIdInDiv()
     sendAuthIdToExtension()
+    removeAuthIdDiv()

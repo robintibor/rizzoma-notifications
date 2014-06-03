@@ -1,5 +1,5 @@
 (function() {
-  var addScriptThatWillSaveAuthIdInDiv, sendAuthIdToExtension, weAreInNotificationsIFrame, writeAuthTokenIntoDiv;
+  var addScriptThatWillSaveAuthIdInDiv, removeAuthIdDiv, sendAuthIdToExtension, weAreInNotificationsIFrame, writeAuthTokenIntoDiv;
 
   weAreInNotificationsIFrame = function() {
     return window.name === 'rizzomaNotificationsIFrame';
@@ -13,7 +13,7 @@
     } else {
       expressSessionId = "undefined";
     }
-    return $('body').append("<div id='expressSessionId'>" + expressSessionId + "</div>");
+    return $('body').append("<div id='expressSessionId' style='display: none'>" + expressSessionId + "</div>");
   };
 
   addScriptThatWillSaveAuthIdInDiv = function() {
@@ -32,9 +32,14 @@
     return chrome.extension.sendMessage("HAVE_EXPRESS_SESSION_ID: " + expressSessionId);
   };
 
+  removeAuthIdDiv = function() {
+    return $('#expressSessionId').remove();
+  };
+
   if (weAreInNotificationsIFrame()) {
     addScriptThatWillSaveAuthIdInDiv();
     sendAuthIdToExtension();
+    removeAuthIdDiv();
   }
 
 }).call(this);

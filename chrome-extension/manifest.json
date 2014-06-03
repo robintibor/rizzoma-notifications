@@ -1,6 +1,6 @@
 {
   "name": "Rizzoma @Mentions Notifier",
-  "version": "0.260",
+  "version": "0.261",
   "manifest_version": 2,
   "description": "Check out and respond to @mentions in Rizzoma immediately. Know if somebody needs your attention right away.",
   "icons": {
