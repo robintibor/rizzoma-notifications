@@ -8,6 +8,7 @@ checkForNewNotifications = ->
         askForNewMentionsAndDisplay()
         console.log("check for new notifications at #{new Date(Date.now())}")
     else 
+      console.log("No express session id, reinserting iframe")
       reinsertRizzomaIFrame()
 
 expressSessionIdRetrievedFromRizzoma = ->
@@ -67,7 +68,7 @@ timeSinceGettingAuthIdLongEnough = ->
     return minutesSinceGettingAuthId > minutesToWait 
 
 insertRizzomaIFrame = ->
-    $('body').append('<iframe src="https://rizzoma.com/topic/" id="rizzomaNotificationsIFrame"></iframe>')
+    $('body').append('<iframe src="https://rizzoma.com/topic/" id="rizzomaNotificationsIFrame" name="rizzomaNotificationsIFrame"></iframe>')
 
 reinsertRizzomaIFrame = ->
   removeRizzomaIFrame()

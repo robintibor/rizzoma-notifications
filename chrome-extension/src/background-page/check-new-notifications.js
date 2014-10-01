@@ -12,6 +12,7 @@
       askForNewMentionsAndDisplay();
       return console.log("check for new notifications at " + (new Date(Date.now())));
     } else {
+      console.log("No express session id, reinserting iframe");
       return reinsertRizzomaIFrame();
     }
   };
@@ -84,7 +85,7 @@
   };
 
   insertRizzomaIFrame = function() {
-    return $('body').append('<iframe src="https://rizzoma.com/topic/" id="rizzomaNotificationsIFrame"></iframe>');
+    return $('body').append('<iframe src="https://rizzoma.com/topic/" id="rizzomaNotificationsIFrame" name="rizzomaNotificationsIFrame"></iframe>');
   };
 
   reinsertRizzomaIFrame = function() {
